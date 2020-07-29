@@ -2,6 +2,7 @@
 import { defineConfig } from 'umi';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
+
 const { REACT_APP_ENV } = process.env;
 export default defineConfig({
   hash: true,
@@ -26,30 +27,32 @@ export default defineConfig({
   routes: [
     {
       path: '/',
+      component: '../layouts/BasicLayout',
       routes: [
         {
           path: '/',
-          component: '../layouts/BasicLayout',
-          authority: [],
+          redirect: '/tech-news/github',
+        },
+        {
+          name: 'tech news',
+          path: '/tech-news',
+          icon: 'table',
           routes: [
-           {
-              name: 'github',
+            {
+              component: './Github',
               icon: 'smile',
-              path: '/listsearcharticles',
-              component: './ListSearchArticles',
+              path: '/tech-news/github',
+              name: 'github',
             },
             {
-              component: './404',
+              component: './Hackernews',
+              icon: 'smile',
+              path: '/tech-news/hackernews',
+              name: 'hackernews',
             },
           ],
         },
-        {
-          component: './404',
-        },
       ],
-    },
-    {
-      component: './404',
     },
   ],
   // Theme for antd: https://ant.design/docs/react/customize-theme-cn

@@ -1,7 +1,7 @@
 import { queryGithubItems } from './service';
 
 const Model = {
-  namespace: 'listSearchArticles',
+  namespace: 'github',
   state: {
     list: [],
   },
@@ -13,22 +13,10 @@ const Model = {
         payload: Array.isArray(response) ? response : [],
       });
     },
-
-    *appendFetch({ payload }, { call, put }) {
-      const response = yield call(queryGithubItems, payload);
-      yield put({
-        type: 'appendList',
-        payload: Array.isArray(response) ? response : [],
-      });
-    },
   },
   reducers: {
     queryList(state, action) {
       return { ...state, list: action.payload };
-    },
-
-    appendList(state, action) {
-      return { ...state, list: state.list.concat(action.payload) };
     },
   },
 };
