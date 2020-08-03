@@ -28,7 +28,7 @@ class UpdateButton extends Component {
     const { updating } = this.state;
     return (
       <Button type="primary" loading={updating} onClick={() => this.update()}>
-        Update Now!
+        Feed Now!
       </Button>
     );
   }

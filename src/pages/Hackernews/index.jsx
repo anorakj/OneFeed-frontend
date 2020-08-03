@@ -3,7 +3,7 @@ import { Card, List } from 'antd';
 import { StarOutlined, CommentOutlined } from '@ant-design/icons';
 import { connect } from 'umi';
 import styles from './style.less';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import UpdateButton from '@/components/UpdateButton';
 
 const Hackernews = ({ dispatch, hackernews: { list }, loading }) => {
   useEffect(() => {
@@ -44,38 +44,37 @@ const Hackernews = ({ dispatch, hackernews: { list }, loading }) => {
   };
 
   return (
-    <PageHeaderWrapper>
-      <Card
-        style={{
-          marginTop: 24,
-        }}
-        bordered={false}
-        bodyStyle={{
-          padding: '8px 32px 32px 32px',
-        }}
-      >
-        <List
-          size="large"
-          loading={list.length === 0 ? loading : false}
-          rowKey="id"
-          itemLayout="vertical"
-          dataSource={list}
-          renderItem={(item) => (
-            <List.Item>
-              <List.Item.Meta
-                title={
-                  <a className={styles.listItemMetaTitle} href={item.link}>
-                    {item.title}
-                  </a>
-                }
-              />
-              <IconText key="star" type="star-o" text={item.points} />
-              <IconText key="comments" type="comment-o" text={item.comments} />
-            </List.Item>
-          )}
-        />
-      </Card>
-    </PageHeaderWrapper>
+    <Card
+      style={{
+        marginTop: 24,
+      }}
+      bordered={false}
+      bodyStyle={{
+        padding: '8px 32px 32px 32px',
+      }}
+      extra={<UpdateButton />}
+    >
+      <List
+        size="large"
+        loading={list.length === 0 ? loading : false}
+        rowKey="id"
+        itemLayout="vertical"
+        dataSource={list}
+        renderItem={(item) => (
+          <List.Item>
+            <List.Item.Meta
+              title={
+                <a className={styles.listItemMetaTitle} href={item.link}>
+                  {item.title}
+                </a>
+              }
+            />
+            <IconText key="star" type="star-o" text={item.points} />
+            <IconText key="comments" type="comment-o" text={item.comments} />
+          </List.Item>
+        )}
+      />
+    </Card>
   );
 };
 

@@ -6,7 +6,6 @@
 import ProLayout from '@ant-design/pro-layout';
 import React from 'react';
 import { Link, useIntl, connect } from 'umi';
-import UpdateButton from '@/components/UpdateButton';
 import logo from '../assets/logo.svg';
 
 const BasicLayout = (props) => {
@@ -57,7 +56,6 @@ const BasicLayout = (props) => {
           <span>{route.breadcrumbName}</span>
         );
       }}
-      rightContentRender={() => <UpdateButton />}
       {...props}
       {...settings}
     >
