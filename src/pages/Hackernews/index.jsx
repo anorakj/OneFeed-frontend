@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { Card, List } from 'antd';
-import { StarOutlined, CommentOutlined } from '@ant-design/icons';
 import { connect } from 'umi';
-import styles from './style.less';
 import UpdateButton from '@/components/UpdateButton';
+import styles from './style.less';
 
 const Hackernews = ({ dispatch, hackernews: { list }, loading }) => {
   useEffect(() => {
@@ -13,40 +12,11 @@ const Hackernews = ({ dispatch, hackernews: { list }, loading }) => {
     });
   }, []);
 
-  const IconText = ({ type, text }) => {
-    switch (type) {
-      case 'star-o':
-        return (
-          <span>
-            <StarOutlined
-              style={{
-                marginRight: 3,
-              }}
-            />
-            {text}
-          </span>
-        );
-
-      case 'comment-o':
-        return (
-          <span>
-            <CommentOutlined
-              style={{
-                marginRight: 3,
-              }}
-            />
-            {text}
-          </span>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <Card
       style={{
         marginTop: 24,
+        backgroundColor: '#f6f6ef',
       }}
       bordered={false}
       bodyStyle={{
@@ -61,16 +31,28 @@ const Hackernews = ({ dispatch, hackernews: { list }, loading }) => {
         itemLayout="vertical"
         dataSource={list}
         renderItem={(item) => (
-          <List.Item>
+          <List.Item className={styles.ListItem}>
             <List.Item.Meta
+              className={styles.listItemMeta}
               title={
-                <a className={styles.listItemMetaTitle} href={item.link}>
-                  {item.title}
-                </a>
+                <span>
+                  <a
+                    className={styles.listItemMetaTitle}
+                    href={item.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {item.title}
+                  </a>
+                  <span style={{ color: '#828282', 'font-size': 12 }}>{` (${
+                    item.link.split('/')[2]
+                  })`}</span>
+                </span>
               }
             />
-            <IconText key="star" type="star-o" text={item.points} />
-            <IconText key="comments" type="comment-o" text={item.comments} />
+            <span
+              style={{ color: '#828282', 'font-size': 12 }}
+            >{`${item.points} | ${item.comments}`}</span>
           </List.Item>
         )}
       />

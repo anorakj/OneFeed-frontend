@@ -39,6 +39,8 @@ const Github = ({ dispatch, github: { list }, loading }) => {
                 <a
                   className={styles.listItemMetaTitle}
                   href={`https://github.com${item.repository}`}
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <GithubOutlined style={{ marginRight: 10 }} />
                   <span className={styles.account}>{`${item.repository.split('/')[1]} / `}</span>
