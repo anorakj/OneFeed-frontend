@@ -50,6 +50,12 @@ export default defineConfig({
               path: '/tech-news/hackernews',
               name: 'hackernews',
             },
+            {
+              component: './Infoq',
+              icon: 'smile',
+              path: '/tech-news/infoq',
+              name: 'infoq',
+            },
           ],
         },
       ],

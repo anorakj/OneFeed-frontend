@@ -1,0 +1,49 @@
+@import '~antd/es/style/themes/default.less';
+
+a.listItemMetaTitle {
+  color: #303030;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.listItemMeta {
+  margin-bottom: 8 !important;
+}
+
+.listItemExtra {
+  width: 272px;
+  height: 1px;
+}
+
+.ListItem {
+  h4 {
+    margin-bottom: 0 !important;
+  }
+
+  color: @heading-color;
+}
+
+.selfTrigger {
+  margin-left: 12px;
+}
+
+@media screen and (max-width: @screen-xs) {
+  .selfTrigger {
+    display: block;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: @screen-md) {
+  .selfTrigger {
+    display: block;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: @screen-lg) {
+  .listItemExtra {
+    width: 0;
+    height: 1px;
+  }
+}
