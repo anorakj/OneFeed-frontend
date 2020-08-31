@@ -2,13 +2,12 @@ import React, { useEffect } from 'react';
 import { Card, List } from 'antd';
 import { connect } from 'umi';
 import UpdateButton from '@/components/UpdateButton';
-import FavoriteButton from '@/components/FavoriteButton';
 import styles from './style.less';
 
-const Infoq = ({ dispatch, infoq: { list }, loading }) => {
+const Favorites = ({ dispatch, favorites: { list }, loading }) => {
   useEffect(() => {
     dispatch({
-      type: 'infoq/fetch',
+      type: 'favorites/fetch',
       payload: {},
     });
   }, []);
@@ -35,22 +34,16 @@ const Infoq = ({ dispatch, infoq: { list }, loading }) => {
             <List.Item.Meta
               className={styles.listItemMeta}
               title={
-                <span>
-                  <a
-                    className={styles.listItemMetaTitle}
-                    href={item.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {item.title}
-                  </a>
-                  <FavoriteButton isFavorite={item.is_favorite} message_id={item.message_id} />
-                </span>
+                <a
+                  className={styles.listItemMetaTitle}
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {item.title}
+                </a>
               }
             />
-            <span style={{ color: '#828a92', 'font-size': '14px', 'font-weight': 400 }}>
-              {item.description}
-            </span>
           </List.Item>
         )}
       />
@@ -58,7 +51,7 @@ const Infoq = ({ dispatch, infoq: { list }, loading }) => {
   );
 };
 
-export default connect(({ infoq, loading }) => ({
-  infoq,
-  loading: loading.models.infoq,
-}))(Infoq);
+export default connect(({ favorites, loading }) => ({
+  favorites,
+  loading: loading.models.favorites,
+}))(Favorites);

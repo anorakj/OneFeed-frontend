@@ -31,12 +31,12 @@ const BasicLayout = (props) => {
           {titleDom}
         </Link>
       )}
+      collapsed={false}
       onCollapse={handleMenuCollapse}
       menuItemRender={(menuItemProps, defaultDom) => {
         if (menuItemProps.isUrl || menuItemProps.children || !menuItemProps.path) {
           return defaultDom;
         }
-
         return <Link to={menuItemProps.path}>{defaultDom}</Link>;
       }}
       breadcrumbRender={(routers = []) => [
@@ -48,6 +48,7 @@ const BasicLayout = (props) => {
         },
         ...routers,
       ]}
+      openKeys={false}
       itemRender={(route, params, routes, paths) => {
         const first = routes.indexOf(route) === 0;
         return first ? (

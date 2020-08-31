@@ -1,4 +1,3 @@
-// https://umijs.org/config/
 import { defineConfig } from 'umi';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
@@ -32,6 +31,12 @@ export default defineConfig({
         {
           path: '/',
           redirect: '/tech-news/github',
+        },
+        {
+          name: 'favorites',
+          path: '/Favorites',
+          icon: 'star',
+          component: './Favorites',
         },
         {
           name: 'tech news',

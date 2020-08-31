@@ -3,6 +3,7 @@ import { Card, List } from 'antd';
 import { GithubOutlined } from '@ant-design/icons';
 import { connect } from 'umi';
 import UpdateButton from '@/components/UpdateButton';
+import FavoriteButton from '@/components/FavoriteButton';
 import ArticleListContent from './components/ArticleListContent';
 import styles from './style.less';
 
@@ -36,16 +37,19 @@ const Github = ({ dispatch, github: { list }, loading }) => {
             <List.Item.Meta
               className={styles.listItemMeta}
               title={
-                <a
-                  className={styles.listItemMetaTitle}
-                  href={`https://github.com${item.repository}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <GithubOutlined style={{ marginRight: 10 }} />
-                  <span className={styles.account}>{`${item.repository.split('/')[1]} / `}</span>
-                  <span className={styles.repo}>{item.repository.split('/')[2]}</span>
-                </a>
+                <span>
+                  <a
+                    className={styles.listItemMetaTitle}
+                    href={`https://github.com${item.repository}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <GithubOutlined style={{ marginRight: 10 }} />
+                    <span className={styles.account}>{`${item.repository.split('/')[1]} / `}</span>
+                    <span className={styles.repo}>{item.repository.split('/')[2]}</span>
+                  </a>
+                  <FavoriteButton isFavorite={item.is_favorite} message_id={item.message_id} />
+                </span>
               }
             />
             <ArticleListContent data={item} />

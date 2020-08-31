@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Card, List } from 'antd';
 import { connect } from 'umi';
+import FavoriteButton from '@/components/FavoriteButton';
 import UpdateButton from '@/components/UpdateButton';
 import styles from './style.less';
 
@@ -44,9 +45,10 @@ const Hackernews = ({ dispatch, hackernews: { list }, loading }) => {
                   >
                     {item.title}
                   </a>
-                  <span style={{ color: '#828282', 'font-size': 12 }}>{` (${
-                    item.link.split('/')[2]
-                  })`}</span>
+                  <span style={{ color: '#828282', 'font-size': 12 }}>
+                    {` (${item.link.split('/')[2]})`}{' '}
+                    <FavoriteButton isFavorite={item.is_favorite} message_id={item.message_id} />
+                  </span>
                 </span>
               }
             />
