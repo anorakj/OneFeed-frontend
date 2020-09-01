@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Card, List } from 'antd';
 import { connect } from 'umi';
-import UpdateButton from '@/components/UpdateButton';
+import FavoriteButton from '@/components/FavoriteButton';
 import styles from './style.less';
 
 const Favorites = ({ dispatch, favorites: { list }, loading }) => {
@@ -21,7 +21,6 @@ const Favorites = ({ dispatch, favorites: { list }, loading }) => {
       bodyStyle={{
         padding: '8px 32px 32px 32px',
       }}
-      extra={<UpdateButton />}
     >
       <List
         size="large"
@@ -34,16 +33,22 @@ const Favorites = ({ dispatch, favorites: { list }, loading }) => {
             <List.Item.Meta
               className={styles.listItemMeta}
               title={
-                <a
-                  className={styles.listItemMetaTitle}
-                  href={item.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {item.title}
-                </a>
+                <span>
+                  <a
+                    className={styles.listItemMetaTitle}
+                    href={item.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {item.title}
+                  </a>
+                  <FavoriteButton isFavorite={1} message_id={item.message_id} />
+                </span>
               }
             />
+            <span style={{ color: '#828a92', 'font-size': '14px', 'font-weight': 400 }}>
+              {item.source}
+            </span>
           </List.Item>
         )}
       />

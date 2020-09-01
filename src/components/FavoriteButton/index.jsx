@@ -31,7 +31,7 @@ class FavoriteButton extends Component {
     } else {
       button = <StarOutlined onClick={this.add} />;
     }
-    return <span>{button}</span>;
+    return <span style={{ marginLeft: '5px' }}>{button}</span>;
   }
 }
 
